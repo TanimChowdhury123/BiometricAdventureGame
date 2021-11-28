@@ -1,2 +1,411 @@
 # AdventureGame
 This is a scary adventure game which I had designed myself using if, then statements and included many libraries such as pygame, OpenCV, Pyglet and Tkinter. 
+
+
+import random
+import copy
+import time 
+import sys
+from tkinter import *
+from pygame import mixer
+import pyglet
+import cv2
+
+inventory = ["Matches"]
+randomevent = random.randint(1, 7)
+
+
+def wait():
+	input("\nPress Enter to continue...\n")
+
+def back():
+	input("\nPress Enter button to go back...\n")
+
+def TK():
+	window = Tk()
+	window.title("BOO!")
+	window = Canvas(window,width=450, height = 450)
+	window.pack()
+	image = PhotoImage(file = 'C:\\Users\\RaytheonCAP08\\Documents\\opencv.png')
+	window.create_image(0,0, anchor = NW, image = image)
+	mixer.init()
+	mixer.music.load("nmh_scream1.mp3")
+	mixer.music.play()
+	
+	window.mainloop()	
+
+def backgroundmusic():
+	mixer.init()
+	mixer.music.load("Moonlight Sonata _ Rainy Detuned Piano Version.mp3")
+	mixer.music.play()
+
+	
+
+	
+
+def room0():
+	print("\nIt's 3am in the morning and you have just arrived at the abandoned house where there had been reports of screaming and loud bangs coming from the house.") 
+	time.sleep(5)
+	print("\nYou start walking up to the door and attempt to pull on it. However, it is locked....\n")
+	time.sleep(4)
+	room0 = True
+	
+	while room0 == True:
+
+		if randomevent == 5:
+			print("\nYou trip over and fall on your face but you get back up and regain your confidence.\n")
+			time.sleep(3)
+			
+
+		answer0 = input("\nYou notice that the window is open. Do you want to either \n1. Examine the outside of the house? \n2. Climb through the window? \n3. Inventory \nAnswer: ").lower().strip()
+        
+        
+		if answer0 == "1": 
+		    print("\nBATTERY OBTAINED! You enter the house through the window.\n")
+		    inventory.append("Battery")
+		    break
+			
+
+		elif answer0 == "2":
+			print("\nYou have entered into the house through the window\n")
+			break
+
+		elif answer0 =="3":
+			print("\n")
+			print(inventory)
+			back()
+
+		else:
+			print("\nPlease type in the right number\n")
+			wait()
+			print(answer0)
+
+	
+def room1():
+	room1 = True
+
+	while room1 == True:
+		
+		print("\nThe room is pitch black but you luckily have a couple of matches which you are able to light to see in the dark room.\n")
+		
+		answer1= input("Do you want to \n1. Enter into the next room? \n2. Keep examining the room? \n3. Inventory \nAnswer:")
+
+		
+		if answer1 == "1":
+			print("\nThe room is locked but with further investigation, you have found a key and now entered through the room\n")
+			inventory.append("Key")
+			break
+
+
+		elif answer1 == "2":
+			print("\nYou have found the key and a small hammer and entered into the room. That hammer may come in handy :)")
+			inventory.append("Key")
+			inventory.append("Hammer")
+			break
+
+		elif answer1 == "3":
+			print("\n")
+			print(inventory)
+			back()
+
+		else:
+			print("\nPlease type in the right number\n")
+			wait()
+			print(answer1)
+
+
+def room2():
+	room2 = True
+
+	while room2 == True:
+
+		if randomevent == 7:
+			print("\n'Why did I put myself in this position?' *puts hand on head*\n")
+			time.sleep(2)
+			
+
+		
+		print("\nAs you enter the next room, you notice that noises from upstairs begin to occur.\n") 
+		time.sleep(4)
+		print("\nThe noises are very obscure and peculiar which makes you more curious.\n")
+		time.sleep(4)
+		print("\nWith little matches left, there is a door located on your right named 'upstairs'.\n")
+		
+		time.sleep(2)
+		answer2= input("Do you want to \n1. Examine the current room \n2. Enter the next room \n3. Inventory \nAnswer:")
+
+		if answer2 == "1":
+			print("\nTORCH OBTAINED\n")
+			inventory.append("Torch")
+
+			if ("Battery") in inventory:
+				print("\nYou can use the torch as you have a battery.\n")
+				break
+			else:
+				print("\nYou have no battery therefore you cannot use the torch.\n")
+				break
+
+		elif answer2 == "2":
+			print("\nYou have entered into the next room\n")
+			break
+
+		elif answer2 == "3":
+			print("\n")
+			print(inventory)
+			back()
+
+		else:
+		    print("\nPlease type in the right number\n")
+		    wait()
+		    print(answer2)
+
+
+def room3():
+	room3 = True
+   
+	while room3 == True:
+		if randomevent == 2:
+			print("\nA mouse runs past you and you scream in a high pitch tone.... really?\n")
+			time.sleep(2)
+
+		if ("Torch" and "Battery") in inventory:
+			print("\nYou enter into the biggest room in the house.\n")
+			time.sleep(3)
+			print("\nYou have no more matches left but luckily, you have a torch therefore you can search around the room better and have found a nice hiding space.\n")
+			time.sleep(5)
+			print("\nMaybe it'll come in handy?\n")
+			time.sleep(3)
+			print("\nThere is nothing left in the room to examine therefore you climb the stairs to the next room.\n")
+			time.sleep(4)
+			print("\nHowever as you walk up the stairs, the noises begin to grow deeper and more malicious.\n")
+			time.sleep(3)
+			print("\nYou start to begin to prepare for the worst.\n")
+
+			time.sleep(3)
+			answer3= input("Do you want to continue? \n1. Yes \n2. No \n3. Inventory \nAnswer:")
+
+			if answer3 == "1":
+				print("\nYou are one brave individual!!\n")
+				break
+
+			elif answer3 == "2":
+				sys.exit("\nWell done, you have survived. Play again for a different result?")
+				break
+			
+
+			elif answer3 == "3":
+				inventory.remove("Matches")
+				print("\n")
+				print(inventory)
+				back()
+				
+
+
+		
+		if ("Torch" and "Battery") not in inventory:
+			print("\nYou enter into the biggest room in the house.\n")
+			time.sleep(3)
+			print("\nAs you have no matches left, you were unable to examine the room due to no light source but was successful in finding the stairs for upstairs therefore you climb the stairs to the next room.\n")
+			time.sleep(5)
+			print("\nHowever as you walk up the stairs, the noises begin to grow deeper and more malicious.\n")
+			time.sleep(4)
+			print("\nYou start to begin to prepare for the worst.\n")
+			
+			time.sleep(2)
+			answer4= input("\nDo you want to continue?\n1. Yes \n2. No \n3. Inventory \nAnswer:")
+            
+			if answer4 == "1":
+				print("\nYou are one brave individual!!\n")
+				break
+
+			elif answer4 == "2":
+				sys.exit("\nWell done, you have survived. Play again for a different result?\n")
+				break
+
+			elif answer4 == "3":
+				inventory.remove("Matches")
+				print("\n")
+				print(inventory)
+				back()
+			
+			else:
+				print("\nPlease type in the right number\n")
+				wait()
+				print(answer4)
+
+
+
+def room4():
+	room4 = True
+
+	while room4 == True:
+		print("\nAs you slowly walk up the stairs, the noises make you feel weak as it vibrates around your body, making every little hair on your body stand up.\n")
+		time.sleep(8) 
+		print("\nYour curiosity turns more into fear yet you are still determined to figure out who or what is making the mysterious yet evil noise.\n")
+		
+
+		if randomevent == 5:
+			print("\nThe creature starts to scream and the bellow of rage which starts to make you partially deaf! However you are still determined.\n")
+
+		if ("Hammer") in inventory:
+			time.sleep(6)
+			answer5 = input("\nYou are now at the top of the stairs and inbetween you and the creature is just a wooden door. You have two options \n1. Use your hammer to break down the door which results in breaking your hammer \n2. Run away \n3. Inventory \nAnswer:")
+
+			if answer5 == "1":
+				print("\nYou break down the lock off the door within seconds which also breaks your hammer.\n")
+				time.sleep(4)
+				print("\nAs you open the door, you see the montrosity that was making the malicious noises.\n")
+				time.sleep(4)
+				print("\nIts claws are dripping in blood from its last victim, its eyes bluging out from its skull, its fangs protruding from its mouth whilst droplets of drool fall from where it stands.\n") 
+				time.sleep(9)
+				print("\nYou are its next victim. Run. Run NOW!\n")
+				break
+
+			elif answer5 == "2":
+				sys.exit("Well done, you have survived. Play again for a different result?")
+				break
+
+
+			elif answer5 == "3":
+				print("\n")
+				print(inventory)
+				back()
+
+			else:
+				print("\nPlease type in the right number\n")
+				wait()
+				print(answer5)
+
+		elif ("Hammer") not in inventory:
+			answer5 = input("\nYou are now at the top of the stairs and inbetween you and the creature is just a wooden door. Your have two options \n1. Break down the door with your foot but you injure yourself \n2. Run away \n3. Inventory \nAnswer:")
+
+			if answer5 == "1":
+				print("\nYou break down the door with a total of three kicks.\n")
+				time.sleep(3)
+				print("\nBANG...\n")
+				time.sleep(1)
+				print("\nBANG...\n")
+				time.sleep(1)
+				print("\nBANG...\n")
+				time.sleep(1)
+				print("\nThe last kick injures you but as you gain your balance and start to look up, you see claws dripping with blood from its last victim, eyes bluging out from its skull, fangs protruding from its mouth with saliva dripping.\n") 
+				time.sleep(10)
+				print("\nReady to eat you. Run. Run NOW!\n")
+				break
+
+			elif answer5 == "2":
+				sys.exit("Well done, you have survived. Play again for a different result?")
+
+			elif answer5 == "3":
+				print("\n")
+				print(inventory)
+				back()
+
+			else:
+				print("\nPlease type in the right number\n")
+				wait()
+				print(answer5)
+
+
+def running():
+	running = True
+
+
+	while running == True:
+
+		if randomevent == 1:
+			print("You dont run. You just accept you fate. THE END")
+			break
+
+
+		if ("Torch" and "Battery") in inventory:
+			print("\nAs you run down the stairs, you remember that you had found a good hiding spot early on in the investigation.\n")
+			
+			time.sleep(3)
+			answer6 = input("Do you want to either \n1. Keep running \n2. Hide \nAnswer:")
+
+			if answer6 == "1":
+				print("\nYou decided to keep running, but you realise that the creature is much faster than you as it closes the distance.\n") 
+				time.sleep(4)
+				print("\nAs a result, you end up in the fangs of the beast.\n")
+				print("\nGAME OVER. Play again for a different result? :)\n")
+				break
+				
+
+
+				
+			
+			elif answer6 == "2":
+				print("\nYou have hidden in the hiding spot and the creature is unable to find you.\n")
+				time.sleep(4)
+				print("\nAfter 30 minutes of searching, it gives up and goes back to the room.\n")
+				time.sleep(4)
+				print("\nYou successfully walk slowly through the other rooms and get out of the house through the window.\n")
+				time.sleep(4)
+				print("\nWell done. YOU SURVIVED! You made some good decisions which lead to your survival. Play again to recieve a different conclusion :)\n")
+				break
+				
+				
+			else:
+				print("\nPlease type in the right number\n")
+				wait()
+				print(answer6)
+
+
+		else:
+			print("\nAs you run down the stairs, you are unable to escape the beast as it is a lot faster than you which means you are devoured by the fangs and jaws of the beast.\n")
+			print("\nGAME OVER. Play again for a different result? :)\n")
+			break
+
+
+
+
+camera_port = 0
+camera = cv2.VideoCapture(camera_port)
+return_value, image = camera.read()
+cv2.imwrite("opencv.png", image)
+del(camera)
+
+	
+vidPath = 'Scary Maze Game Scream.mp4'
+window = pyglet.window.Window()
+player = pyglet.media.Player()
+source = pyglet.media.StreamingSource()
+MediaLoad = pyglet.media.load(vidPath)
+
+player.queue(MediaLoad)
+player.play()
+
+@window.event
+def on_draw():
+	if player.source and player.source.video_format:
+		player.get_texture().blit(50,50)
+
+pyglet.app.run()
+
+
+
+
+
+
+
+
+
+
+
+backgroundmusic()
+room0()
+wait()
+room1()
+wait()
+room2()
+wait()
+room3()
+wait()
+room4()
+wait()
+running()
+TK()
+
+
+   
