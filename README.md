@@ -5,7 +5,7 @@ I used simple if, then statements and included many libraries such as pygame, Op
 
 Please feel free to copy my code and save it into a python file and run the file through the command line of your computer. Enjoy!
 
-(Also, any bugs within the code that you may find, please let me know thanks)
+(Also, any bugs within the code that you may find, please let me know thanks).
 
 
 
